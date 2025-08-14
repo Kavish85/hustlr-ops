@@ -1,10 +1,40 @@
 {
   "competitors": [
     {
-      "name": "Example Auto Marketplace",
-      "aliases": ["Example Auto", "ExampleAuto.co.za"],
-      "rss": ["https://example.com/news/rss"],
-      "extraQueries": ["partnership", "financing", "insurance", "escrow", "fraud", "Gauteng", "South Africa"]
+      "name": "AutoTrader",
+      "aliases": ["Autotrader", "AutoTrader SA", "Auto Trader", "autotrader.co.za"],
+      "rss": ["https://www.autotrader.co.za/feed/articles/atom.xml"],
+      "extraQueries": ["partnership","acquisition","funding","investment","integration","API","launch","pricing","subscription","advertising","dealer","lead","finance","insurance","warranty","inspection","escrow","fraud","Gauteng","South Africa"]
+    },
+    {
+      "name": "Cars.co.za",
+      "aliases": ["Cars", "Carscoza", "cars.co.za", "Cars.co.za Awards"],
+      "rss": [],
+      "extraQueries": ["partnership","acquisition","funding","integration","API","launch","pricing","subscription","advertising","dealer","lead","finance","insurance","warranty","inspection","fraud","award","Gauteng","South Africa"]
+    },
+    {
+      "name": "TopAuto",
+      "aliases": ["TopAuto SA", "topauto.co.za", "Top Auto"],
+      "rss": [],
+      "extraQueries": ["partnership","integration","media kit","advertising","newsletter","audience","launch","pricing","subscription","classifieds","dealer","lead","Gauteng","South Africa"]
+    },
+    {
+      "name": "WeBuyCars",
+      "aliases": ["We Buy Cars", "webuycars.co.za", "WeBuyCars Holdings", "WBC.JO", "WBC JSE"],
+      "rss": [],
+      "extraQueries": ["SENS","earnings","trading statement","JSE","expansion","warehouse","inspection centre","auction","partnership","integration","finance","insurance","warranty","pricing","fraud","Gauteng","South Africa"]
+    },
+    {
+      "name": "Weelee",
+      "aliases": ["Weelee SA", "weelee.co.za", "Weelee Mega Store"],
+      "rss": [],
+      "extraQueries": ["partnership","store","mega store","expansion","integration","finance","insurance","warranty","inspection","pricing","fraud","Cape Town","Gauteng","South Africa"]
+    },
+    {
+      "name": "Surf4Cars",
+      "aliases": ["Surf 4 Cars", "surf4cars.co.za"],
+      "rss": [],
+      "extraQueries": ["partnership","integration","launch","pricing","subscription","advertising","dealer","lead","finance","insurance","warranty","inspection","fraud","Gauteng","South Africa"]
     }
   ]
 }
