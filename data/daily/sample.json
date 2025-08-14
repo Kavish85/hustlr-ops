@@ -1,0 +1,15 @@
+{
+  "date": "2025-08-14",
+  "generated_at": "2025-08-14T04:05:00Z",
+  "entries": [
+    {
+      "id": "sample-1",
+      "competitor": "Example Auto",
+      "tags": ["New Business"],
+      "impact": "Medium",
+      "summary": "Example item so the screen renders.",
+      "sources": [{"url":"https://example.com"}],
+      "action_plan": [{"title":"Do a thing","owner":"Ops","eta":"2d","effort":"Low","impact":"Medium"}]
+    }
+  ]
+}
