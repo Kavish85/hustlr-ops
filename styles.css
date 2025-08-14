@@ -1,97 +1,128 @@
-[hidden]{ display:none !important; }   /* guarantee Safari/iOS hide */
-.accordion{ cursor:pointer; }          /* obvious it's clickable */
-
-
+/* //// THEME ///////////////////////////////////////////////////////////////*/
 :root{
-  --brand:#000B27;           /* your theme */
-  --accent:#FF6A00;          /* orange pop; tweak if needed */
-  --bg:#0B1020;
-  --card:#10172A;
-  --text:#E8EEF8;
-  --muted:#95A3B8;
+  /* Hustlr palette */
+  --brand:#000B27;        /* deep navy */
+  --accent:#FCA311;       /* Hustlr orange */
+  --bg:#070B16;           /* page background */
+  --card:#0E1627;         /* card surface */
+  --text:#F2F6FF;         /* main text */
+  --muted:#9FB0CC;        /* secondary text */
   --border:rgba(255,255,255,0.08);
-  --shadow:0 6px 24px rgba(0,0,0,0.35);
-  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --radius:18px;
   --radius-sm:12px;
 }
 
 *{box-sizing:border-box}
+[hidden]{display:none !important}
+
 html,body{height:100%}
 body{
   margin:0;
-  font:16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
   color:var(--text);
+  font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans";
   background:
-    radial-gradient(1200px 600px at 10% -10%, #1A2550 0%, transparent 60%),
-    radial-gradient(1000px 500px at 110% -20%, #0D1B40 0%, transparent 55%),
+    radial-gradient(1200px 700px at 10% -10%, #14224A 0%, transparent 60%),
+    radial-gradient(1100px 600px at 110% -20%, #0A183C 0%, transparent 55%),
     var(--bg);
 }
 
+/* //// APP BAR /////////////////////////////////////////////////////////////*/
 .appbar{
   position:sticky; top:0; z-index:10;
-  display:flex; align-items:center; gap:12px;
+  display:flex; align-items:center;
   padding:14px 16px;
-  background:linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0));
-  backdrop-filter: blur(10px);
+  background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,0));
   border-bottom:1px solid var(--border);
+  backdrop-filter: blur(10px);
 }
 .title{display:flex; gap:12px; align-items:center}
-.logo{width:36px;height:36px;border-radius:10px}
-h1{margin:0;font-size:1.25rem;letter-spacing:0.3px}
-.clock{font-size:0.85rem;color:var(--muted)}
+.logo{width:36px;height:36px;border-radius:12px}
+h1{margin:0;font-size:1.25rem;letter-spacing:.3px}
+.clock{font-size:.85rem;color:var(--muted)}
 
+/* //// LAYOUT //////////////////////////////////////////////////////////////*/
 .container{max-width:860px;margin:18px auto;padding:0 16px}
-
 .section{margin:14px 0}
+
+/* //// ACCORDIONS //////////////////////////////////////////////////////////*/
 .accordion{
-  width:100%; text-align:left;
-  display:flex; justify-content:space-between; align-items:center; gap:8px;
-  background:var(--card); color:var(--text);
-  border:1px solid var(--border); border-radius:var(--radius);
-  padding:14px 16px; box-shadow:var(--shadow);
-  font-weight:600; letter-spacing:0.2px;
+  width:100%; cursor:pointer;
+  display:flex; justify-content:space-between; align-items:center;
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)), var(--card);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:999px;
+  padding:16px 18px;
+  box-shadow:var(--shadow);
+  font-weight:700;
+  letter-spacing:.2px;
 }
-.accordion .chev{transition:transform .2s ease}
+.accordion .chev{transition:transform .25s ease; opacity:.9}
 .accordion[aria-expanded="true"] .chev{transform:rotate(90deg)}
+
 .panel{
-  border:1px solid var(--border); border-top:none;
-  border-radius:0 0 var(--radius) var(--radius);
-  background:rgba(255,255,255,0.02);
-  padding:12px 12px 2px;
+  overflow:hidden;
+  max-height:0;            /* collapsed */
+  opacity:0;
+  transform:translateY(-4px);
+  transition: max-height .36s cubic-bezier(.2,.8,.2,1), opacity .22s ease, transform .22s ease;
+  margin-top:6px;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), rgba(255,255,255,.01);
+  padding:0 10px;          /* will reveal on open */
+}
+.panel.open{
+  opacity:1;
+  transform:translateY(0);
+  padding:12px 10px 6px;
+  max-height:900px;        /* big enough for content */
 }
 
-.app-list{display:grid;grid-template-columns:1fr;gap:10px;padding:6px}
+/* //// APP TILES & CARDS ///////////////////////////////////////////////////*/
+.app-list{display:grid;gap:10px;padding:6px}
 .app-item{
-  display:flex;align-items:center;gap:10px;justify-content:space-between;
+  display:flex;align-items:center;gap:12px;justify-content:space-between;
   width:100%; background:var(--card); color:var(--text);
   border:1px solid var(--border); border-radius:var(--radius-sm);
   padding:14px 16px; box-shadow:var(--shadow);
-  font-weight:600;
+  font-weight:700;
 }
 .app-item .emoji{font-size:1.1rem}
 .badge{
   display:inline-flex;align-items:center;justify-content:center;
-  background:var(--accent); color:#111; font-weight:800;
+  background:var(--accent); color:#111; font-weight:900;
   border-radius:999px; padding:2px 8px; font-size:.72rem
 }
 
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);margin:10px 0}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+  margin:12px 0;
+  box-shadow:var(--shadow);
+}
 .card .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.card hr{border:none;border-top:1px solid var(--border);margin:10px 0}
+.card hr{border:none;border-top:1px solid var(--border);margin:12px 0}
+.card h3{margin:.2rem 0 0.4rem}
 
+/* lists */
 .cardlist{display:grid;gap:10px}
 
+/* Buttons & selects */
 .btn{
   appearance:none;border:none;cursor:pointer;
   padding:10px 14px;border-radius:12px;
-  background:linear-gradient(180deg, #FF8A2A, #FF6A00);
-  color:#111;font-weight:800;box-shadow:var(--shadow)
+  background:linear-gradient(180deg, #FFC25E, var(--accent));
+  color:#111;font-weight:900;box-shadow:var(--shadow)
 }
-.btn:disabled{opacity:.6;cursor:not-allowed}
 .btn.subtle{
   background:transparent;color:var(--muted);
   border:1px dashed var(--border)
 }
+.btn:disabled{opacity:.6;cursor:not-allowed}
 
 .select{
   width:100%;padding:10px 12px;border-radius:12px;
@@ -99,7 +130,9 @@ h1{margin:0;font-size:1.25rem;letter-spacing:0.3px}
   border:1px solid var(--border)
 }
 
-.meta{color:var(--muted);font-size:.85rem}
+.meta{color:var(--muted);font-size:.9rem}
+
+/* Toast */
 .toast{
   position:fixed;left:50%;bottom:20px;transform:translateX(-50%);
   background:#0D1426;border:1px solid var(--border);border-radius:12px;
@@ -107,6 +140,6 @@ h1{margin:0;font-size:1.25rem;letter-spacing:0.3px}
 }
 
 /* responsive */
-@media (min-width:700px){
-  .app-list{grid-template-columns:repeat(2, 1fr)}
+@media (min-width:720px){
+  .app-list{grid-template-columns:repeat(2,1fr)}
 }
