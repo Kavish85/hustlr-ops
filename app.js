@@ -17,7 +17,7 @@ $('#open-competitor-news').addEventListener('click', async ()=>{
 
 async function renderCompetitorNews(){
   home.hidden = true; view.hidden = false; view.innerHTML = '';
-  const latest = await (await fetch('/data/index.json', {cache:'no-store'})).json();
+  const latest = await (await fetch('./data/index.json', {cache:'no-store'})).json();
   const digest = await (await fetch(latest.latest, {cache:'no-store'})).json();
 
   const hdr = document.createElement('div');
