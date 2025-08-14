@@ -1,67 +1,97 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="apple-mobile-web-app-title" content="Hustlr HQ">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>hustlr — ops hub</title>
+
+  <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#000B27" />
-  <title>Hustlr South Africa</title>
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="apple-touch-icon" href="./icons/h-192.png" />
-  <link rel="icon" href="./icons/h-192.png" />
-  <link rel="stylesheet" href="./styles.css" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="hustlr">
+
+  <link rel="icon" href="icons/h-192.png" />
+  <link rel="apple-touch-icon" href="icons/h-192.png" />
+
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="app" class="container">
-    <header class="header">
-      <div class="brand">
-        <img src="./icons/h-192.png" alt="Hustlr logo" class="logo"/>
-        <h1>Hustlr Ops</h1>
+  <header class="appbar">
+    <div class="title">
+      <img src="icons/h-192.png" alt="" class="logo" />
+      <div>
+        <h1>hustlr</h1>
+        <div class="clock" aria-live="polite"></div>
       </div>
-      <div class="clock" aria-live="polite"></div>
-    </header>
+    </div>
+  </header>
 
-    <main id="home" class="grid">
-      <button class="tile" id="open-competitor-news" aria-label="Open Competitor News">
-        <div class="tile-icon">📰</div>
-        <div class="tile-title">Competitor News</div>
-        <div class="tile-badge" id="news-badge" hidden></div>
+  <main id="home" class="container">
+    <!-- SECTION: hustlr (sub-apps) -->
+    <section class="section">
+      <button class="accordion" aria-expanded="false">
+        <span>hustlr</span><span class="chev" aria-hidden="true">▸</span>
       </button>
-      <!-- Future tiles can be added here -->
-    </main>
+      <div class="panel" hidden>
+        <div class="app-list">
+          <button class="app-item" id="open-competitor-news">
+            <span class="emoji">📰</span>
+            <span>Competitor News</span>
+            <span id="news-badge" class="badge" hidden>New</span>
+          </button>
+        </div>
+      </div>
+    </section>
 
-    <section id="view" hidden></section>
+    <!-- SECTION: Weekly meal planner -->
+    <section class="section">
+      <button class="accordion" aria-expanded="false">
+        <span>Weekly meal planner</span><span class="chev" aria-hidden="true">▸</span>
+      </button>
+      <div class="panel" id="meal-planner" hidden>
+        <!-- JS renders the 5 rows here -->
+      </div>
+    </section>
 
-    <div id="toaster" role="status" aria-live="polite" hidden></div>
-  </div>
+    <!-- SECTION: Laya's Homework -->
+    <section class="section">
+      <button class="accordion" aria-expanded="false">
+        <span>Laya’s Homework</span><span class="chev" aria-hidden="true">▸</span>
+      </button>
+      <div class="panel" id="homework" hidden>
+        <div class="row">
+          <button class="btn" id="reload-homework">Reload week</button>
+          <button class="btn subtle" id="reset-homework">Reset ticks</button>
+        </div>
+        <div id="homework-meta" class="meta"></div>
+        <div id="homework-list" class="cardlist"></div>
+      </div>
+    </section>
+  </main>
 
-  <script type="module" src="./app.js"></script>
+  <!-- Detail view (e.g., Competitor News) -->
+  <section id="view" class="container" hidden></section>
+
+  <div id="toaster" role="status" class="toast" hidden></div>
+
   <script>
+    // Register the service worker
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
-        try {
-          const reg = await navigator.serviceWorker.register('./sw.js');
-          // Update UX
-          navigator.serviceWorker.addEventListener('controllerchange', () => {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js');
+        navigator.serviceWorker.addEventListener('message', (evt)=>{
+          if (evt.data && evt.data.type === 'NEW_DATA') {
             const t = document.getElementById('toaster');
-            t.textContent = 'App updated. Tap to reload.';
-            t.onclick = () => location.reload();
-            t.hidden = false;
-          });
-          // Listen for SW messages (e.g., new data available)
-          navigator.serviceWorker.addEventListener('message', (e) => {
-            if (e.data && e.data.type === 'NEW_DATA') {
-              const b = document.getElementById('news-badge');
-              b.textContent = 'New';
-              b.hidden = false;
-              const t = document.getElementById('toaster');
-              t.textContent = 'New digest available';
-              t.hidden = false;
-            }
-          });
-        } catch (err) { console.error('SW reg failed', err); }
+            t.textContent = 'New digest available. Tap “Competitor News”.';
+            t.hidden = false; setTimeout(()=>t.hidden=true, 4000);
+            const nb = document.getElementById('news-badge');
+            if (nb) nb.hidden = false;
+          }
+        });
       });
     }
   </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
