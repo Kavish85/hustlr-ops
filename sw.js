@@ -19,7 +19,7 @@ self.addEventListener('activate', (event) => {
 // Runtime: JSON uses stale-while-revalidate, everything else cache-first
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
-  if (url.pathname.startsWith('/data/')) {
+  if (url.pathname.includes('/data/') || url.pathname.startsWith('data/')) {
     event.respondWith(swr(event.request));
   } else if (APP_SHELL.includes(url.pathname) || url.origin === self.location.origin) {
     event.respondWith(cacheFirst(event.request));
@@ -38,12 +38,12 @@ async function swr(req){
     }
     return res;
   }).catch(()=>null);
-  return cached || network || caches.match('/offline.html');
+  return cached || network || caches.match('offline.html');
 }
 
 async function cacheFirst(req){
   const cached = await caches.match(req);
-  return cached || fetch(req).catch(()=>caches.match('/offline.html'));
+  return cached || fetch(req).catch(()=>caches.match('offline.html'));
 }
 
 // Optional: notifications when app is open (not push)
@@ -55,7 +55,7 @@ self.addEventListener('push', (event) => {
   const data = event.data ? event.data.json() : { title: 'Hustlr', body: 'New digest available' };
   event.waitUntil(self.registration.showNotification(data.title, {
     body: data.body,
-    icon: '/icons/h-192.png',
-    badge: '/icons/h-192.png'
+    icon: 'icons/h-192.png',
+    badge: 'icons/h-192.png'
   }));
 });
