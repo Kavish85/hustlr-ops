@@ -117,3 +117,15 @@ function renderFrom(entries){
   // naive refresh: re-render
   view.innerHTML = `<div class="card">${$('#view .card')?.innerHTML || ''}</div>` + cards;
 }
+
++ function fmtSAST(iso){
++   if(!iso) return '';
++   try {
++     return new Date(iso).toLocaleString(undefined, {
++       timeZone: 'Africa/Johannesburg',
++       year:'numeric', month:'short', day:'2-digit', hour:'2-digit', minute:'2-digit'
++     });
++   } catch { return iso; }
++ }
+
+
