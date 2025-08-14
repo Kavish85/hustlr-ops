@@ -81,7 +81,7 @@ function renderEntry(e){
     <strong>Action Plan</strong>
     <ol>${actions}</ol>
     <div class="actions">
-      <button class="btn" data-action="ack">Mark acknowledged</button>
+      <button class="btn" data-action="ack" ${isAck ? 'disabled' : ''}>${isAck ? 'Acknowledged' : 'Mark acknowledged'}</button>
     </div>
   `;
 }
@@ -128,4 +128,17 @@ function renderFrom(entries){
 +   } catch { return iso; }
 + }
 
-
+const ackKey = `ack-${e.id}`;
++  const isAck = localStorage.getItem(ackKey) === '1';
+   const tags = e.tags?.map(t=>`<span class="badge">${t}</span>`).join(' ') || '';
+   const actions = (e.action_plan||[]).map(a=>`<li><strong>${a.title}</strong> — owner: ${a.owner||'Ops'}, ETA: ${a.eta||'n/a'} · ${a.effort||'—'} / ${a.impact||'—'}</li>`).join('');
+   const links = (e.sources||[]).slice(0,4).map(s=>`<a href="${s.url}" target="_blank" rel="noopener">${new URL(s.url).hostname}</a>`).join(' · ');
+   return `
+     <div class="row">${tags}</div>
+     <h3>${e.competitor}</h3>
+     <p>${e.summary}</p>
+     <div class="meta">${links}</div>
+     <hr />
+     <strong>Action Plan</strong>
+     <ol>${actions}</ol>
+     <div class="actions">
