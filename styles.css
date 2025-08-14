@@ -1,3 +1,7 @@
+[hidden]{ display:none !important; }   /* guarantee Safari/iOS hide */
+.accordion{ cursor:pointer; }          /* obvious it's clickable */
+
+
 :root{
   --brand:#000B27;           /* your theme */
   --accent:#FF6A00;          /* orange pop; tweak if needed */
