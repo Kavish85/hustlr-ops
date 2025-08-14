@@ -143,12 +143,3 @@ const ackKey = `ack-${e.id}`;
      <ol>${actions}</ol>
      <div class="actions">
     
-// Update the button label/disabled state immediately
-+  const btn = [...document.querySelectorAll('[data-action="ack"]')].find(b => b.closest('.card')?.innerHTML.includes(entry.competitor));
-+  if (btn) { btn.textContent = 'Acknowledged'; btn.disabled = true; }
- }
-
-// You’ve seen the latest; hide the badge on the home tile
-+  localStorage.setItem('lastSeenDigest', digest.date);
-+  const nb = document.getElementById('news-badge');
-+  if (nb) nb.hidden = true;
