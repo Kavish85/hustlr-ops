@@ -1,4 +1,4 @@
-const VERSION = 'v1.0.6'; // bumped
+const VERSION = 'v1.0.7';
 const APP_SHELL = ['index.html','styles.css','app.js','manifest.webmanifest','offline.html'];
 const APP_CACHE = `app-${VERSION}`;
 const DATA_CACHE = 'data-cache';
