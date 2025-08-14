@@ -12,13 +12,15 @@ function tick(){
 setInterval(tick, 1000); tick();
 
 /* ============= ACCORDIONS (headings with arrow) ============= */
-$$('.accordion').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    btn.setAttribute('aria-expanded', String(!expanded));
-    const panel = btn.nextElementSibling;
-    panel.hidden = expanded;
-  });
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.accordion');
+  if (!btn) return;
+  const panel = btn.nextElementSibling;
+  if (!panel || !panel.classList.contains('panel')) return;
+
+  const expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', String(!expanded));
+  panel.hidden = expanded ? true : false;
 });
 
 /* ============= SUB-APP: Competitor News ============= */
