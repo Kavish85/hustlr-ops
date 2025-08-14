@@ -1,5 +1,5 @@
 const VERSION = 'v1.0.0';
-const APP_SHELL = ['index.html','styles.css','app.js','manifest.webmanifest','offline.html']
+const APP_SHELL = ['index.html','styles.css','app.js','manifest.webmanifest','offline.html'];
 const APP_CACHE = `app-${VERSION}`;
 const DATA_CACHE = 'data-cache';
 
