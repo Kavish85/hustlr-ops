@@ -1,0 +1,15 @@
+{
+  "mission": "Make buying, selling, and owning vehicles in South Africa safer and smarter through AI, escrow, and a trusted service network.",
+  "vision": "Be South Africa’s most trusted automotive marketplace by measurable buyer safety, transparent pricing, and dealer ROI.",
+  "usps": [
+    "AI Vehicle Health",
+    "Escrow + POPIA",
+    "Immutable Reviews",
+    "Dealer Price Intelligence",
+    "Mechanic Pairing"
+  ],
+  "go_to_market": "Gauteng-first; focus on independent & group dealers; partner with DEKRA and F&I providers; build mechanic/panel-beater density by suburb.",
+  "commercial_model": "Pilots → subscription tiers post-PMF; escrow fees; affiliate F&I; featured placements.",
+  "roadmap_12m": "Q1 onboarding & trust MVPs; Q2 finance/insurance & fraud detection; Q3 app & referrals; Q4 partner APIs & warranty bundles.",
+  "governance": "POPIA-by-design, CPA-aligned buyer education, independent audits, public trust dashboard."
+}
