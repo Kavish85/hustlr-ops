@@ -142,3 +142,8 @@ const ackKey = `ack-${e.id}`;
      <strong>Action Plan</strong>
      <ol>${actions}</ol>
      <div class="actions">
+    
+// Update the button label/disabled state immediately
++  const btn = [...document.querySelectorAll('[data-action="ack"]')].find(b => b.closest('.card')?.innerHTML.includes(entry.competitor));
++  if (btn) { btn.textContent = 'Acknowledged'; btn.disabled = true; }
+ }
