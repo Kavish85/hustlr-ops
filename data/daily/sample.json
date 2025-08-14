@@ -7,9 +7,9 @@
       "competitor": "Example Auto",
       "tags": ["New Business"],
       "impact": "Medium",
-      "summary": "Example item so the screen renders.",
+      "summary": "Sample item so the screen renders.",
       "sources": [{"url":"https://example.com"}],
-      "action_plan": [{"title":"Do a thing","owner":"Ops","eta":"2d","effort":"Low","impact":"Medium"}]
+      "action_plan": [{"title":"Quick counter-move","owner":"Ops","eta":"2d","effort":"Low","impact":"Medium"}]
     }
   ]
 }
