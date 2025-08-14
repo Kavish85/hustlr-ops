@@ -1,0 +1,9 @@
+{
+  "week": "2025-W33",
+  "week_of": "2025-08-11",
+  "tasks": [
+    { "id": "math-fractions-4", "text": "Complete Fractions Worksheet #4", "due": "2025-08-13" },
+    { "id": "reading-20min", "text": "Read 20 minutes (any book)" },
+    { "id": "spelling-list", "text": "Practice spelling list (10 words)", "due": "2025-08-15" }
+  ]
+}
