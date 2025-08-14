@@ -119,7 +119,7 @@ async function main(){
   const digest = { date: TODAY, generated_at: new Date().toISOString(), entries: all };
   const dailyPath = path.join(dailyDir, `${TODAY}.json`);
   fs.writeFileSync(dailyPath, JSON.stringify(digest, null, 2));
-  fs.writeFileSync(path.join(dataDir, 'index.json'), JSON.stringify({ latest: `/data/daily/${TODAY}.json` }, null, 2));
+  fs.writeFileSync(path.join(dataDir, 'index.json'), JSON.stringify({ latest: `./data/daily/${TODAY}.json` }, null, 2));
   console.log('Digest written:', dailyPath);
 }
 
