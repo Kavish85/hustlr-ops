@@ -17,8 +17,18 @@ $('#open-competitor-news').addEventListener('click', async ()=>{
 
 async function renderCompetitorNews(){
   home.hidden = true; view.hidden = false; view.innerHTML = '';
-  const latest = await (await fetch('./data/index.json', {cache:'no-store'})).json();
-  const digest = await (await fetch(latest.latest, {cache:'no-store'})).json();
+  let digest;
++  try {
++    const latest = await (await fetch('./data/index.json', {cache:'no-store'})).json();
++    digest = await (await fetch(latest.latest, {cache:'no-store'})).json();
++  } catch (err) {
++    const card = document.createElement('div');
++    card.className = 'card';
++    card.innerHTML = `<h3>Couldn’t load today’s digest</h3>
++    <p class="meta">Check your connection, then pull to refresh. The last saved digest will still be available offline.</p>`;
++    view.appendChild(card);
++    return;
++  }
 
   const hdr = document.createElement('div');
   hdr.className = 'card';
