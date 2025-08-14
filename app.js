@@ -32,8 +32,8 @@ async function renderCompetitorNews(){
 
   const hdr = document.createElement('div');
   hdr.className = 'card';
-  hdr.innerHTML = `<div class="row"><span class="badge">${digest.date}</span><span class="meta">${digest.generated_at}</span></div>
-  <h2>Competitor News</h2>
+  hdr.innerHTML = `<div class="row"><span class="badge">${digest.date}</span><span class="meta">Last updated: ${fmtSAST(digest.generated_at)}</span></div>
+   <h2>Competitor News</h2>
   <div class="actions">
     <button class="btn" id="back">← Back</button>
     <button class="btn" id="share">Share</button>
