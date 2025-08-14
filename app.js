@@ -11,7 +11,12 @@ function tick(){
 }
 setInterval(tick, 1000); tick();
 
-/* ============= ACCORDIONS (headings with arrow) ============= */
+/* ============= ACCORDIONS (animated) ============= */
+window.addEventListener('DOMContentLoaded', ()=>{
+  // ensure panels aren't "display:none" so transitions can run
+  document.querySelectorAll('.panel[hidden]').forEach(p=>p.hidden=false);
+});
+
 document.addEventListener('click', (e)=>{
   const btn = e.target.closest('.accordion');
   if (!btn) return;
@@ -20,7 +25,17 @@ document.addEventListener('click', (e)=>{
 
   const expanded = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', String(!expanded));
-  panel.hidden = expanded ? true : false;
+  if (!expanded) {
+    panel.classList.add('open');
+    // allow height to fit content smoothly
+    panel.style.maxHeight = panel.scrollHeight + 'px';
+  } else {
+    panel.style.maxHeight = panel.scrollHeight + 'px'; // set current height
+    requestAnimationFrame(()=>{                         // then collapse
+      panel.classList.remove('open');
+      panel.style.maxHeight = '0px';
+    });
+  }
 });
 
 /* ============= SUB-APP: Competitor News ============= */
