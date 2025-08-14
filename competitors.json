@@ -1,0 +1,10 @@
+{
+  "competitors": [
+    {
+      "name": "Example Auto Marketplace",
+      "aliases": ["Example Auto", "ExampleAuto.co.za"],
+      "rss": ["https://example.com/news/rss"],
+      "extraQueries": ["partnership", "financing", "insurance", "escrow", "fraud", "Gauteng", "South Africa"]
+    }
+  ]
+}
