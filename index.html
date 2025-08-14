@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#000B27" />
+  <title>Hustlr Ops</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/h-192.png" />
+  <link rel="icon" href="./icons/h-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app" class="container">
+    <header class="header">
+      <div class="brand">
+        <img src="./icons/h-192.png" alt="Hustlr logo" class="logo"/>
+        <h1>Hustlr Ops</h1>
+      </div>
+      <div class="clock" aria-live="polite"></div>
+    </header>
+
+    <main id="home" class="grid">
+      <button class="tile" id="open-competitor-news" aria-label="Open Competitor News">
+        <div class="tile-icon">📰</div>
+        <div class="tile-title">Competitor News</div>
+        <div class="tile-badge" id="news-badge" hidden></div>
+      </button>
+      <!-- Future tiles can be added here -->
+    </main>
+
+    <section id="view" hidden></section>
+
+    <div id="toaster" role="status" aria-live="polite" hidden></div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', async () => {
+        try {
+          const reg = await navigator.serviceWorker.register('./sw.js');
+          // Update UX
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            const t = document.getElementById('toaster');
+            t.textContent = 'App updated. Tap to reload.';
+            t.onclick = () => location.reload();
+            t.hidden = false;
+          });
+          // Listen for SW messages (e.g., new data available)
+          navigator.serviceWorker.addEventListener('message', (e) => {
+            if (e.data && e.data.type === 'NEW_DATA') {
+              const b = document.getElementById('news-badge');
+              b.textContent = 'New';
+              b.hidden = false;
+              const t = document.getElementById('toaster');
+              t.textContent = 'New digest available';
+              t.hidden = false;
+            }
+          });
+        } catch (err) { console.error('SW reg failed', err); }
+      });
+    }
+  </script>
+</body>
+</html>
